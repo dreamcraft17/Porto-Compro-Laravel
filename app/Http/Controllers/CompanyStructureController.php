@@ -13,36 +13,75 @@ class CompanyStructureController extends Controller
     public function index()
     {
         $title = 'Company Structure';
-        $companyStructure = CompanyStructure::with('positions.employees')->get();
-        return view('Admin.Pages.CompanyStructure.Index', compact('companyStructure', 'title'));
+        $companystructures = CompanyStructure:: paginate(10);
+        return view('Admin.Pages.CompanyStructure.Index', compact('companystructures','title'));
     }
 
     public function create()
     {
-        $title = 'Add Company Structure';
-        $positions = Position::all();
-        return view('Admin.Pages.CompanyStructure.create', compact('title', 'positions'));
+        $title='Masukkan Gambar Struktur';
+        return view ('Admin.Pages.CompanyStructure.create', compact('title'));
     }
 
     public function store(Request $request)
     {
-        // Validate the request
         $request->validate([
-            'name' => 'required|string',
-            // Add more validation rules as needed
+            'image' => 'nullable|image|max:9999',
         ]);
 
-        // Create the company structure
-        $companyStructure = CompanyStructure::create([
-            'name' => $request->input('name'),
-            // Add more fields as needed
+        if($request->hasFile('image')){
+            $imageName = time().'.'.$request->image->extension();
+            $request->image->move(public_path('images'),$imageName);
+            $imagePath = 'images/'.$imageName;
+        }else{
+            $imagePath = null;
+        }
+
+        $companystructure = CompanyStructure::create([
+            'image'=>$imagePath,
         ]);
 
-        // Attach positions to the company structure
-        $companyStructure->positions()->attach($request->input('positions'));
-
-        return redirect()->route('company_structure.index')->with('success', 'Company Structure added successfully');
+        return redirect()->route('companystructures.index');
     }
 
-    // Add methods for edit, update, and destroy as needed
+    public function show($id)
+    {
+        $companystructure = CompanyStructure::findOrFail($id);
+        return response()->json($companystructure);
+    }
+
+    public function edit($id)
+    {
+        $companystructure= CompanyStructure::findOrFail($id);
+        $title = 'Ganti Gambar';
+        return view('Admin.Pages.CompanyStructure.edit',compact('companystructure','title'));
+    }
+
+
+    public function update(Request $request, $id)
+    {
+        $companystructure = CompanyStructure::findOrFail($id);
+
+        $request->validate([
+            'image'=>'nullable|image|max:99999',
+        ]);
+
+        if($request->hasFile('image')){
+            $imageName= time().'.'.$request->image->extension();
+            $request->image->move(public_path('images'),$imageName);
+            $companystructure->image ='images/'.$imageName;
+        }
+
+        $companystructure->save();
+
+        return redirect()->route('companystructure.index')->with('success', 'Gambar berhasil diperbarui');
+    }
+
+    public function destroy($id)
+    {
+        $companystructure=CompanyStructure::findOrFail($id);
+        $companystructure->delete();
+
+        return redirect()->route('companystructures.index')->with('success', 'Gambar berhasil dihapus');
+    }
 }

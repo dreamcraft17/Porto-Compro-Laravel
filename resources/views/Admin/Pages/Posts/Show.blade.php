@@ -20,8 +20,7 @@
                 </div>
                 @if ($post->image)
                     <div style="max-height: 350px; overflow: hidden;">
-                        <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->category->name }}"
-                            class="img-fluid">
+                        <img src="{{ url('/post-images/' . $post->image) }}" alt="{{ $post->title }}" class="img-fluid">
                     </div>
                 @else
                     <svg class="bd-placeholder-img card-img-top" width="100%" height="350"
@@ -29,8 +28,8 @@
                         aria-label="Placeholder: {{ $post->category->name }}" preserveAspectRatio="xMidYMid slice"
                         focusable="false">
                         <title>{{ $post->category->name }}</title>
-                        <rect width="100%" height="100%" fill="#868e96"></rect><text x="48%" y="50%" fill="#dee2e6"
-                            dy=".3em">{{ $post->category->name }}</text>
+                        <rect width="100%" height="100%" fill="#868e96"></rect>
+                        <text x="48%" y="50%" fill="#dee2e6" dy=".3em">{{ $post->category->name }}</text>
                     </svg>
                 @endif
                 <article class="my-3 fs-5">

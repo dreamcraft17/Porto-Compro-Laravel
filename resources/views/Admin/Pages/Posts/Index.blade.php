@@ -11,6 +11,7 @@
                     <th scope="col" class="text-center">No.</th>
                     <th scope="col" class="text-center">Judul Informasi</th>
                     <th scope="col" class="text-center">Kategori</th>
+                    <th scope="col" class="text-center">Gambar</th>
                     <th scope="col" class="text-center">Publikasi</th>
                     <th scope="col" class="text-center">Aksi</th>
                 </tr>
@@ -21,6 +22,7 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $post->title }}</td>
                         <td>{{ $post->category->name }}</td>
+                        <td>{{ $post->image }}</td>
                         <td class="text-center">
                             <div class="badge {{ $post->is_published === 0 ? 'bg-danger' : 'bg-success' }}"><span
                                     data-feather="{{ $post->is_published === 0 ? 'x-circle' : 'check-square' }}"></span>

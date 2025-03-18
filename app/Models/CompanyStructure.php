@@ -10,9 +10,8 @@ class CompanyStructure extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'photo',
-        'title'
+        'photo'
+        
         
     ];
 

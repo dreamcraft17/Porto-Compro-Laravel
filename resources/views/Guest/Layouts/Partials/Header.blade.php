@@ -23,16 +23,18 @@
                     <a href="/socialimpact" class="dropdown-item">SOCIAL IMPACT</a>
                 </div>
             </div>
-            <a href="/Company-Achievement" class="nav-item nav-link {{ Request::is('Company-Achievement') ? 'active' : '' }}">ACHIEVEMENT</a>
+            <!-- <a href="/Company-Achievement" class="nav-item nav-link {{ Request::is('Company-Achievement') ? 'active' : '' }}">ACHIEVEMENT</a> -->
+            <a href="{{ route('guest.achievement.index') }}" class="nav-item nav-link {{ Request::is('guest/achievement') ? 'active' : '' }}">ACHIEVEMENT</a>
             <a href="{{ route('guest.product.index') }}" class="nav-item nav-link {{ Request::is('guest/product') ? 'active' : '' }}">PRODUCT</a>
             <a href="{{ route('guest.service.index') }}" class="nav-item nav-link {{ Request::is('guest/service') ? 'active' : '' }}">SERVICE</a>
             <a href="/contact" class="nav-item nav-link {{ Request::is('contact') ? 'active' : '' }}">CONTACT US</a>
-            <a href="/careers" class="nav-item nav-link {{ Request::is('careers') ? 'active' : '' }}">CAREERS</a>
+            <a href="{{ route('guest.career.index') }}" class="nav-item nav-link {{ Request::is('guest/career') ? 'active' : '' }}">CAREER</a>
 
-            <form class="d-flex">
-            <input class="form-control form-control-sm me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-light btn-sm" type="submit"><i class="bi bi-search"></i></button>
-            </form>
+            <form action="{{ route('search') }}" method="GET" class="d-flex">
+    <input class="form-control form-control-sm me-2" type="search" name="query" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-light btn-sm" type="submit"><i class="bi bi-search"></i></button>
+</form>
+
         </div>
     </div>
 </nav>

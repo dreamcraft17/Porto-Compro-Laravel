@@ -3,21 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Product;
+use App\Models\Career;
 use Illuminate\Support\Facades\DB;
-class ProductController extends Controller
+
+class CareerController extends Controller
 {
     public function index()
     {
-        $title='Product';
-        $products = Product::paginate(10); // Mengambil data testimoni dengan paginasi
-        return view('Admin.Pages.Product.index', compact('products','title'));
+        $title='Career';
+        $careers = Career::paginate(10); // Mengambil data testimoni dengan paginasi
+        return view('Admin.Pages.Career.index', compact('careers','title'));
     }
 
     public function create()
     {
         $title ='Tambah Produk';
-        return view('Admin.Pages.Product.create',compact('title'));
+        return view('Admin.Pages.Career.create',compact('title'));
     }
 
     public function store(Request $request)
@@ -37,33 +38,33 @@ class ProductController extends Controller
             $imagePath = null;
         }
     
-        $product = Product::create([
+        $career = Career::create([
             'name' => $request->input('name'),
             'detail' => $request->input('message'),
             'image' => $imagePath,
         ]);
     
-        return redirect()->route('products.index');
+        return redirect()->route('careers.index');
     }
 
      public function show($id)
     {
-        $product = Product::findOrFail($id);
-        return response()->json($product);
+        $career = Career::findOrFail($id);
+        return response()->json($career);
     }
 
     public function edit($id)
     {
-        $product = Product::findOrFail($id);
+        $career = Career::findOrFail($id);
         $title = 'Edit Produk';
-        return view('Admin.Pages.Product.edit', compact('product', 'title'));
+        return view('Admin.Pages.Career.edit', compact('Career', 'title'));
     }
 
 
 
     public function update(Request $request, $id)
     {
-        $product = Product::findOrFail($id);
+        $career = Career::findOrFail($id);
 
         
         $request->validate([
@@ -76,21 +77,21 @@ class ProductController extends Controller
         if ($request->hasFile('image')) {
             $imageName = time().'.'.$request->image->extension();  
             $request->image->move(public_path('images'), $imageName);
-            $product->image = 'images/'.$imageName;
+            $career->image = 'images/'.$imageName;
         }
 
-        $product->name = $request->input('name');
-        $product->detail = $request->input('detail');
-        $product->save();
+        $career->name = $request->input('name');
+        $career->detail = $request->input('detail');
+        $career->save();
 
-        return redirect()->route('products.index')->with('success', 'Produk berhasil diperbarui');
+        return redirect()->route('careers.index')->with('success', 'Produk berhasil diperbarui');
     }
 
     public function destroy($id)
     {
-        $product = Product::findOrFail($id);
-        $product->delete();
+        $career = Career::findOrFail($id);
+        $career->delete();
 
-        return redirect()->route('products.index')->with('success', 'Produk berhasil dihapus');
+        return redirect()->route('careers.index')->with('success', 'Produk berhasil dihapus');
     }
 }

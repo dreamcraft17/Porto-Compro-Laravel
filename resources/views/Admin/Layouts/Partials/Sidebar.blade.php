@@ -46,15 +46,21 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('admin/company-structures*') ? 'active' : '' }}" href="/admin/company-structures">
+                <a class="nav-link {{ Request::is('admin/achievements*') ? 'active' : '' }}" href="/admin/achievements">
+                    <span data-feather="award" class="align-text-bottom"></span>
+                    Achievement
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ Request::is('admin/structures*') ? 'active' : '' }}" href="/admin/structures">
                     <span data-feather="shopping-cart" class="align-text-bottom"></span>
                     Company Structure
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('admin/positions*') ? 'active' : '' }}" href="/admin/positions">
-                    <span data-feather="shopping-cart" class="align-text-bottom"></span>
-                    Position
+                <a class="nav-link {{ Request::is('admin/careers*') ? 'active' : '' }}" href="/admin/careers">
+                    <span data-feather="award" class="align-text-bottom"></span>
+                    Career
                 </a>
             </li>
 

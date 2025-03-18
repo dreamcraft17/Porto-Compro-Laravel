@@ -126,7 +126,8 @@
                             @endif
                             <div class="card-body">
                                 <h5 class="card-title text-center">{{ $service->name }}</h5>
-                                <p class="card-text text-center">{{ $service->detail }}</p>
+                                <!-- <p class="card-text text-center">{{ $service->detail }}</p> -->
+                                <p class="card-text text-center">{{ substr($service->detail, 0, 50) }}{{ strlen($service->detail) > 50 ? '...' : '' }}</p>
                             </div>
                         </div>
                     </div>
@@ -158,8 +159,9 @@
                             @endif
                             <div class="card-body">
                                 <h5 class="card-title text-center">{{ $product->name }}</h5>
-                                <p class="card-text text-center">{{ $product->detail }}</p>
-                            </div>
+                                <!-- <p class="card-text text-center">{{ $product->detail }}</p> -->
+                                <p class="card-text text-center">{{ substr($product->detail, 0, 50) }}{{ strlen($product->detail) > 50 ? '...' : '' }}</p>
+                               </div>
                         </div>
                     </div>
                 @endif

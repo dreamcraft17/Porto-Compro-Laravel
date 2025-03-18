@@ -5,6 +5,6 @@
     </div>
     <div class="text-center">
         <img src="{{ asset('/assets/img/logoPT.png') }}" alt="" width="500" height="300">
-        <h2>Selamat Datang di Panel Admin, {{ auth()->user()->name }}!</h2>
+        <h2>Selamat Datang di Panel Admin,  !</h2>
     </div>
 @endsection

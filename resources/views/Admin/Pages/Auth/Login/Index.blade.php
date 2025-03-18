@@ -68,8 +68,8 @@
     <main class="form-signin w-100 m-auto">
         <form action="/login" method="POST">
             @csrf
-            <img class="mb-4" src="{{ asset('/assets/img/logo.png') }}" alt="" width="150" height="150">
-            <h1 class="h3 mb-3 fw-normal">Login</h1>
+            <img class="mb-4" src="{{ asset('/assets/img/logoPT2.png') }}" alt="" width="300" height="150">
+            <h1 class="h3 mb-3 fw-normal" style="font-family:monospace">Admin Login</h1>
 
             <div class="form-floating">
                 <input type="text" name="username" class="form-control" id="username" placeholder="Username" autofocus>

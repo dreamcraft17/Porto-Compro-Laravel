@@ -9,15 +9,21 @@
                     <div class="card-header">Tambah Gambar</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('companystructures.store') }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('structures.store') }}" enctype="multipart/form-data">
                             @csrf
-</br>
                             </br>
                             <div class="form-group row">
                                 <label for="image" class="col-md-4 col-form-label text-md-right">Gambar</label>
 
                                 <div class="col-md-6">
                                     <input id="image" type="file" class="form-control-file" name="image">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="message" class="col-md-4 col-form-label text-md-right">Detail</label> 
+
+                                <div class="col-md-6">
+                                    <textarea id="message" class="form-control" name="message"></textarea>
                                 </div>
                             </div>
                             <p></p>

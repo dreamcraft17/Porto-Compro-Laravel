@@ -6,12 +6,27 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Tambah Gambar</div>
+                    <div class="card-header">Tambah Produk</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('companystructures.store') }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('careers.store') }}" enctype="multipart/form-data">
                             @csrf
+
+                            <div class="form-group row mb">
+                                <label for="name" class="col-md-4 col-form-label text-md-right">Nama</label>
+
+                                <div class="col-md-6">
+                                    <input id="name" type="text" class="form-control" name="name" required autofocus>
+                                </div>
+                            </div>
 </br>
+                            <div class="form-group row">
+                                <label for="message" class="col-md-4 col-form-label text-md-right">Detail</label>
+
+                                <div class="col-md-6">
+                                    <textarea id="message" class="form-control" name="message" required></textarea>
+                                </div>
+                            </div>
                             </br>
                             <div class="form-group row">
                                 <label for="image" class="col-md-4 col-form-label text-md-right">Gambar</label>

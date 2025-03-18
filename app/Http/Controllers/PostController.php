@@ -63,7 +63,7 @@ class PostController extends Controller
         ]);
 
         if ($request->file('image')) {
-            $validatedData['image'] = $request->file('image')->store('post-images');
+            $validatedData['image'] = $request->file('image')->storeAs('post-images', $request->file('image')->getClientOriginalName());
         }
 
         $validatedData['user_id'] = auth()->user()->id;

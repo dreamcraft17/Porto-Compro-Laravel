@@ -3,21 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Product;
+use App\Models\Achievement;
 use Illuminate\Support\Facades\DB;
-class ProductController extends Controller
+class AchievementController extends Controller
 {
+    //
+
     public function index()
     {
-        $title='Product';
-        $products = Product::paginate(10); // Mengambil data testimoni dengan paginasi
-        return view('Admin.Pages.Product.index', compact('products','title'));
+        $title='Achievement';
+        $achievements= Achievement::paginate(10);
+        return view('Admin.Pages.Achievement.index', compact('achievements','title'));
     }
 
     public function create()
     {
-        $title ='Tambah Produk';
-        return view('Admin.Pages.Product.create',compact('title'));
+        $title ='Tambah Penghargaan';
+        return view('Admin.Pages.Achievement.create',compact('title'));
     }
 
     public function store(Request $request)
@@ -37,33 +39,31 @@ class ProductController extends Controller
             $imagePath = null;
         }
     
-        $product = Product::create([
+        $achievement = Achievement::create([
             'name' => $request->input('name'),
             'detail' => $request->input('message'),
             'image' => $imagePath,
         ]);
     
-        return redirect()->route('products.index');
+        return redirect()->route('achievements.index');
     }
 
-     public function show($id)
+    public function show($id)
     {
-        $product = Product::findOrFail($id);
-        return response()->json($product);
+        $achievement = Achievement::findOrFail($id);
+        return response()-> json($achievement);
     }
 
     public function edit($id)
     {
-        $product = Product::findOrFail($id);
-        $title = 'Edit Produk';
-        return view('Admin.Pages.Product.edit', compact('product', 'title'));
+        $achievement = Achievement::findOrFail($id);
+        $title = 'Edit Penghargaan';
+        return view('Admin.Pages.Achievement.edit', compact('achievement', 'title'));
     }
-
-
 
     public function update(Request $request, $id)
     {
-        $product = Product::findOrFail($id);
+        $achievement = Achievement::findOrFail($id);
 
         
         $request->validate([
@@ -76,21 +76,21 @@ class ProductController extends Controller
         if ($request->hasFile('image')) {
             $imageName = time().'.'.$request->image->extension();  
             $request->image->move(public_path('images'), $imageName);
-            $product->image = 'images/'.$imageName;
+            $achievement->image = 'images/'.$imageName;
         }
 
-        $product->name = $request->input('name');
-        $product->detail = $request->input('detail');
-        $product->save();
+        $achievement->name = $request->input('name');
+        $achievement->detail = $request->input('detail');
+        $achievement->save();
 
-        return redirect()->route('products.index')->with('success', 'Produk berhasil diperbarui');
+        return redirect()->route('achievements.index')->with('success', 'Penghargaan berhasil diperbarui');
     }
 
     public function destroy($id)
     {
-        $product = Product::findOrFail($id);
-        $product->delete();
+        $achievement = Achievement::findOrFail($id);
+        $achievement-> delete();
 
-        return redirect()->route('products.index')->with('success', 'Produk berhasil dihapus');
+        return redirect()->route('achievements.index')->with('success', 'Penghargaan berhasil diperbarui');
     }
 }
